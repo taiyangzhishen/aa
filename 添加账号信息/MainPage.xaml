@@ -8,6 +8,82 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="VisualState000">
+                    <VisualState.Setters>
+                        <Setter Target="write.Width" Value="auto"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualState1000">
+                    <VisualState.Setters>
+                        <Setter Target="write.Width" Value="0"></Setter>
+                        <Setter Target="passage.(Grid.Column)" Value="1"></Setter>
+                        <Setter Target="passage.(Grid.ColumnSpan)" Value="2"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" x:Name="titleList">
+            <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+            <TextBlock Text="标题" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50"></TextBlock>
+            <ListView x:Name="listView" Grid.Row="1" IsItemClickEnabled="True" ItemClick="listView_ItemClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Title}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Column="1" x:Name="write">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="新建文章" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50"></TextBlock>
+            <TextBlock Grid.Row="1" Text="标题" VerticalAlignment="Stretch"></TextBlock>
+            <TextBox x:Name="title" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PlaceholderText="请输入标题..." Margin="0,0,5,0"></TextBox>
+            <TextBox x:Name="newPassage" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" PlaceholderText="请输入内容..." Margin="0,0,5,0"></TextBox>
+            <TextBlock Grid.Row="3" Text="内容" VerticalAlignment="Stretch"></TextBlock>
+            <Button x:Name="save" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5,10,5,20" Click="save_Click">保存</Button>
+        </Grid>
+
+        <Grid Grid.Column="2" x:Name="passage">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="文章内容" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50"></TextBlock>
+            <TextBlock Grid.Row="1" Text="标题" VerticalAlignment="Stretch"></TextBlock>
+            <Border Grid.Row="2" BorderBrush="Black" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="1" Margin="5,0,5,0"></Border>
+            <TextBlock x:Name="T" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0,5,0"></TextBlock>
+            <Border Grid.Row="4" BorderBrush="Black" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="1" Margin="5,0,5,0"></Border>
+            <TextBlock Grid.Row="3" Text="内容" VerticalAlignment="Stretch" Margin="5,0,5,0"></TextBlock>
+            <TextBlock x:Name="P" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBlock>
+            <Button x:Name="delete" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5,10,5,20" Click="delete_Click">删除</Button>
+        </Grid>
 
     </Grid>
 </Page>
